@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BethanysPieShop.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using BethanysPieShop.Models;
 
 namespace BethanysPieShop
 {
@@ -17,30 +17,17 @@ namespace BethanysPieShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IPieRepository, MockPieRepository>();
-
-
-            //Make Sure Add MVC
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
+            app.UseDeveloperExceptionPage();
+            app.UseStatusCodePages();
+            app.UseStaticFiles();
 
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
-
-            //--------------------------------------------Add Middleware
-            app.UseDeveloperExceptionPage(); //-- Yellow Screen Of Death
-            app.UseStatusCodePages(); // status 400 or 500
-            app.UseStaticFiles(); // go seach by default wwwroot / files or image etc.
-            app.UseMvcWithDefaultRoute(); // Routes
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

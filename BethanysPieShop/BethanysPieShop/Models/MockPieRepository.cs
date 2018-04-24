@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BethanysPieShop.Models
 {
-    public class MockPieRepository : IPieRepository
+    public class MockPieRepository: IPieRepository
     {
         private List<Pie> _pies;
 
@@ -28,14 +28,14 @@ namespace BethanysPieShop.Models
                 };
         }
 
-        public IEnumerable<Pie> GetAllPie()
+        public IEnumerable<Pie> GetAllPies()
         {
             return _pies;
         }
 
-        public Pie GetPieById(int pieID)
+        public Pie GetPieById(int pieId)
         {
-            return _pies.FirstOrDefault(x => x.Id == pieID);
+            return _pies.FirstOrDefault(p => p.Id == pieId);
         }
     }
 }
