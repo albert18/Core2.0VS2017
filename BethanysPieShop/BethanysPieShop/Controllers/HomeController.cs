@@ -20,6 +20,7 @@ namespace BethanysPieShop.Controllers
 
         public IActionResult Index()
         {
+
             var pies = _pieRepository.GetAllPies().OrderBy(p => p.Name);
 
             var homeViewModel = new HomeViewModel()
